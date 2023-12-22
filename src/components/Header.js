@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/logo.png";
 import usericon from "../assets/Netflixuser.png";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/Firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userdata = useSelector((Store) => Store.user);
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error");
       });
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photourl } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photourl: photourl,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    //unsubscribe when component unmounts
+    return () => unsubscribe();
+  }, []);
   return (
     <div className="absolute  w-screen px-8 py-4 bg-gradient-to-b from-black z-10 flex justify-between">
       <img className="w-44" src={logo} alt="logo" />

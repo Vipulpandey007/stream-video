@@ -33,3 +33,16 @@ Netflix gpt:-
 
 - searchbar
 - moviesuggestion
+
+# Bug Fix:-
+
+- Redirecting user after login and if not login don't redirect to browse page
+- Unsubscibed to the onAuthStateChanged callback
+
+# tmdb APi
+
+- get data from tmdb
+
+# custom hooks
+
+- movieslice
