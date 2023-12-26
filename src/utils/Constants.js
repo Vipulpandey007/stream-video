@@ -8,3 +8,8 @@ export const API_OPTIONS = {
 };
 
 export const CARDIMGCDN = "https://image.tmdb.org/t/p/w500/";
+
+export const SUPPOERTED_LANGUAGES = [
+  { identifiers: "en", name: "English" },
+  { identifiers: "hindi", name: "Hindi" },
+];
