@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/Constants";
 import { addNowPlayingMovies } from "../utils/movieSlice";
 
 const useNowPlaying = () => {
   const dispatch = useDispatch();
+  const NowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
   useEffect(() => {
-    getNowPlayingMovies();
+    !NowPlayingMovies && getNowPlayingMovies();
   }, []);
 
   const getNowPlayingMovies = async () => {

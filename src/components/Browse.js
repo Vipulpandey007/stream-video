@@ -18,9 +18,14 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      {gptToggle && <GPtSearch />}
-      <MainContainer />
-      <SecondaryContainer />
+      {gptToggle ? (
+        <GPtSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };

@@ -1,15 +1,21 @@
 import GptSearchBar from "./GptSearchBar";
 import GptSuggestions from "./GptSuggestions";
-import nlogo from "../assets/netfliximg.jpg";
+import { BG_URL } from "../utils/Constants";
 
 const GPtSearch = () => {
   return (
     <div>
-      <div className="absolute -z-10">
-        <img src={nlogo} alt="background-img" />
+      <div className="fixed -z-10">
+        <img
+          className="h-screen object-cover md:w-screen"
+          src={BG_URL}
+          alt="background-img"
+        />
       </div>
-      <GptSearchBar />
-      <GptSuggestions />
+      <div>
+        <GptSearchBar />
+        <GptSuggestions />
+      </div>
     </div>
   );
 };
