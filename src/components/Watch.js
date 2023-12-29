@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import useWatchVideo from "../hooks/useWatchVideo";
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
@@ -12,7 +12,9 @@ const Watch = () => {
   const wVideo = useSelector((store) => store.movies.WatchVideo);
   return (
     <div className="w-screen h-screen  bg-black">
-      <img className="w-44 mx-auto md:mx-10 pt-[5%]" src={logo} alt="logo" />
+      <Link to="/browse">
+        <img className="w-44 mx-auto md:mx-10 pt-[5%]" src={logo} alt="logo" />
+      </Link>
       {!wVideo ? (
         <Shimmer />
       ) : (

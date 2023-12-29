@@ -8,6 +8,7 @@ import useTopRated from "../hooks/useTopRated";
 import useUpcoming from "../hooks/useUpcoming";
 import GPtSearch from "./GPtSearch";
 import { useSelector } from "react-redux";
+import Footer from "./Footer";
 
 const Browse = () => {
   useNowPlaying();
@@ -27,6 +28,7 @@ const Browse = () => {
           <SecondaryContainer />
         </>
       )}
+      <Footer />
     </div>
   );
 };
