@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import usericon from "../assets/Netflixuser.png";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -42,6 +42,10 @@ const Header = () => {
     //unsubscribe when component unmounts
     return () => unsubscribe();
   }, []);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
   const handleGpt = () => {
     dispatch(toggleSearchView());
   };
@@ -73,16 +77,19 @@ const Header = () => {
             {showGptSearch ? "Homepage" : "Gpt Search"}
           </button>
           <img
-            className="md:w-12 hidden md:block"
+            className="md:w-12 h-12  cursor-pointer"
             src={usericon}
             alt="user-icon"
+            onClick={toggleDropdown}
           />
-          <button
-            className="font-bold text-white m-1 border border-black px-2 py-1 bg-slate-500"
-            onClick={handleSignOut}
-          >
-            {userdata.displayName} Sign Out
-          </button>
+          {isDropdownOpen && (
+            <div className="absolute bg-[#333333] text-slate-400 mt-14 w-48 right-2 p-2 rounded-lg shadow-lg">
+              <ul>
+                <div className="">Welcome {userdata.displayName}</div>
+                <button onClick={handleSignOut}>Sign out</button>
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </div>

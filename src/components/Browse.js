@@ -15,6 +15,7 @@ const Browse = () => {
   useTopRated();
   useUpcoming();
   const gptToggle = useSelector((store) => store.gpt.showGptSearch);
+
   return (
     <div>
       <Header />
