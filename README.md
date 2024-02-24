@@ -1,4 +1,4 @@
-# Netflixgpt
+# Stream-Video (Gpt search enabled)
 
 - Using Create-react-app
 - Tailwind Css
